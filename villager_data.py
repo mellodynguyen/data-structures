@@ -2,6 +2,7 @@
 
 # line order in the file 
 # name -> species -> personality -> hobby -> motto
+# [0]     [1]        [2]            [3]      [4]
 
 def all_species(filename):
     """Return a set of unique species in the given file.
@@ -67,6 +68,7 @@ def all_names_by_hobby(filename):
 
     # 6 hobbies: Fitness, Nature, Education, Music, Fashion, and Play
     # return value should be a list with six lists inside
+    # main_list = [fitness[(villagers with fitness)], nature[], educaiton[], music[], fashion[], play[]]
     fitness = []
     nature = []
     education = []
@@ -74,10 +76,53 @@ def all_names_by_hobby(filename):
     fashion = []
     play = []
 
+    # main list the hobbies will go into 
+    main_list = []
 
+    # line order in the file 
+    # name -> species -> personality -> hobby -> motto
+    # [0]     [1]        [2]            [3]      [4]
+    filename = open("villagers.csv")
+    for line in filename: 
+        name = line.rstrip().split("|")[0]
+        hobby = line.rstrip().split("|")[3]
+        # name, hobby = line.rstrip().split("|")
+        if hobby == "Fitness":
+            fitness.append(name)
+        elif hobby == "Nature":
+            nature.append(name)
+        elif hobby == "Education":
+            education.append(name)
+        elif hobby == "Music":
+            music.append(name)
+        elif hobby == "Fashion":
+            fashion.append(name)
+        elif hobby == "Play":
+            play.append(name)
+    
+    # main_list.append(fitness)
+    # main_list.append(nature)
+    # main_list.append(education)
+    # main_list.append(music)
+    # main_list.append(fashion)
+    # main_list.append(play)
 
-    return []
+    main_list = [fitness, nature, education, music, fashion, play]
+    return main_list
+    
+    # print statement to see if it is appending the whole fitness list to main list 
+    # print(main_list)
 
+    # testing if list are appending every name to their respective list
+
+    # print(f"Fitness: {fitness}")
+    # print(f"Nature: {nature}")
+    # print(f"Education {education}")
+    # print(music)
+    # print(fashion)
+    # print(play)
+
+# all_names_by_hobby("villagers.csv")
 
 def all_data(filename):
     """Return all the data in a file.

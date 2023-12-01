@@ -1,5 +1,7 @@
 """Functions to parse a file containing villager data."""
 
+# line order in the file 
+# name -> species -> personality -> hobby -> motto
 
 def all_species(filename):
     """Return a set of unique species in the given file.
@@ -13,10 +15,17 @@ def all_species(filename):
 
     species = set()
 
+    filename = open("villagers.csv")
+    for line in filename:
+        line = line.rstrip() 
+        words = line.split("|")
+        
+        species.add(words[1])
     # TODO: replace this with your code
 
     return species
-
+print(all_species("villagers.csv"))
+# printing to make sure it's printing the species 
 
 def get_villagers_by_species(filename, search_string="All"):
     """Return a list of villagers' names by species.

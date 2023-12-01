@@ -138,11 +138,27 @@ def all_data(filename):
     """
 
     all_data = []
-
     # TODO: replace this with your code
 
-    return all_data
+    # sentence/line structure 
+    # Cyrano|Anteater|Cranky|Education|Don't punch your nose to spite your face.
 
+    # what the tuple should look like:
+    # ('cyrano', 'anteater', 'cranky', 'education', 'Don't punch your nose to spite your face')
+
+    filename= open("villagers.csv")
+    for line in filename:
+        name, species, personality, hobby, motto = line.rstrip().split("|")[0:]
+        
+        all_info = tuple(line.rstrip().split("|")[0:])
+        # cant use -> tuple(name, species, personality, hobby, motto) // tuples take 1 argument at a time 
+        all_data.append(all_info)
+
+    
+    # all_data being the list that contains the tuples -> all_data = (insert tupes)
+    
+    return all_data
+# print(all_data("villagers.csv"))
 
 def find_motto(filename, villager_name):
     """Return the villager's motto.

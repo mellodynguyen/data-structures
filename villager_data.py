@@ -15,16 +15,17 @@ def all_species(filename):
 
     species = set()
 
+
     filename = open("villagers.csv")
     for line in filename:
         line = line.rstrip() 
         words = line.split("|")
         
         species.add(words[1])
-    # TODO: replace this with your code
 
     return species
-print(all_species("villagers.csv"))
+
+# print(all_species("villagers.csv"))
 # printing to make sure it's printing the species 
 
 def get_villagers_by_species(filename, search_string="All"):
@@ -40,10 +41,19 @@ def get_villagers_by_species(filename, search_string="All"):
 
     villagers = []
 
-    # TODO: replace this with your code
+    filename = open("villagers.csv")
+    for line in filename:
+        name, species = line.rstrip().split("|")[:2]
+        # villager name and species = words [0] and [1] which is why we stop at [2]
+
+        if search_string in ("All", species):
+            villagers.append(name)
 
     return sorted(villagers)
 
+# print(get_villagers_by_species("villagers.csv", search_string="All"))
+# print(get_villagers_by_species("villagers.csv", search_string="Wolf"))
+# checking if it works for the respective species
 
 def all_names_by_hobby(filename):
     """Return a list of lists containing villagers' names, grouped by hobby.
@@ -55,7 +65,16 @@ def all_names_by_hobby(filename):
         - list[list[str]]: a list of lists containing names
     """
 
-    # TODO: replace this with your code
+    # 6 hobbies: Fitness, Nature, Education, Music, Fashion, and Play
+    # return value should be a list with six lists inside
+    fitness = []
+    nature = []
+    education = []
+    music = []
+    fashion = []
+    play = []
+
+
 
     return []
 

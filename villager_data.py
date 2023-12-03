@@ -17,8 +17,8 @@ def all_species(filename):
     species = set()
 
 
-    filename = open("villagers.csv")
-    for line in filename:
+    file = open(filename)
+    for line in file:
         line = line.rstrip() 
         words = line.split("|")
         
@@ -42,8 +42,8 @@ def get_villagers_by_species(filename, search_string="All"):
 
     villagers = []
 
-    filename = open("villagers.csv")
-    for line in filename:
+    file = open("filename")
+    for line in file:
         name, species = line.rstrip().split("|")[:2]
         # villager name and species = words [0] and [1] which is why we stop at [2]
 
@@ -82,8 +82,8 @@ def all_names_by_hobby(filename):
     # line order in the file 
     # name -> species -> personality -> hobby -> motto
     # [0]     [1]        [2]            [3]      [4]
-    filename = open("villagers.csv")
-    for line in filename: 
+    file = open(filename)
+    for line in file: 
         name = line.rstrip().split("|")[0]
         hobby = line.rstrip().split("|")[3]
         # name, hobby = line.rstrip().split("|")
@@ -146,8 +146,8 @@ def all_data(filename):
     # what the tuple should look like:
     # ('cyrano', 'anteater', 'cranky', 'education', 'Don't punch your nose to spite your face')
 
-    filename= open("villagers.csv")
-    for line in filename:
+    file= open(filename)
+    for line in file:
         name, species, personality, hobby, motto = line.rstrip().split("|")[0:]
         
         all_info = tuple(line.rstrip().split("|")[0:])
@@ -203,3 +203,23 @@ def find_likeminded_villagers(filename, villager_name):
     """
 
     # TODO: replace this with your code
+    likeminded_villagers = set()
+    same_personality = None
+
+    # file = open(filename)
+    for villager_data in all_data(filename):
+        name, _, personality = villager_data[:3]
+        if villager_name == name:
+            # print(personality)
+            same_personality = personality
+            break
+    
+    if same_personality:
+        for villager_data in all_data(filename):
+            name, _, personality = villager_data[:3]
+            if personality == same_personality:
+                likeminded_villagers.add(name)
+        
+    return likeminded_villagers
+
+# print(find_likeminded_villagers("villagers.csv", "Olaf"))
